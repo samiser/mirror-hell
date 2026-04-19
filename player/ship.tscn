@@ -23,6 +23,7 @@ script = ExtResource("2_4cq66")
 stream = ExtResource("3_iibov")
 
 [node name="ChungusShip" type="Sprite2D" parent="." unique_id=1911509201]
+z_index = 1
 texture_filter = 1
 texture = ExtResource("3_wp5hq")
 hframes = 6
