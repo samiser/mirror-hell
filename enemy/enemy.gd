@@ -31,6 +31,7 @@ const FADE_IN_DURATION: float = 0.3
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var shield: AnimatableBody2D = $Shield
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var collision_polygon: CollisionPolygon2D = $CollisionPolygon2D
 
 func apply_data(data: EnemyData) -> void:
 	type = data.type
@@ -45,6 +46,7 @@ func apply_data(data: EnemyData) -> void:
 func _ready() -> void:
 	add_to_group("enemy")
 	modulate.a = 0.0
+	collision_polygon.disabled = true
 	if type == Type.BLUE:
 		add_to_group("blue")
 		shield.add_to_group("red")
@@ -77,6 +79,7 @@ func _physics_process(delta: float) -> void:
 
 func _activate() -> void:
 	_active = true
+	collision_polygon.disabled = false
 	var tween := create_tween()
 	tween.tween_property(self, "modulate:a", 1.0, FADE_IN_DURATION)
 

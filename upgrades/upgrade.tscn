@@ -7,12 +7,14 @@
 radius = 10.049875
 
 [node name="Upgrade" type="AnimatableBody2D" unique_id=512988770]
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_rgapa")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=834899534]
 texture_filter = 1
 texture = ExtResource("2_rgapa")
-hframes = 2
+hframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2095721111]
 shape = SubResource("CircleShape2D_rgapa")
