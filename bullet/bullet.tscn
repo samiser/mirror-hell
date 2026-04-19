@@ -6,6 +6,6 @@
 [node name="Bullet" type="Sprite2D" unique_id=1138541297]
 texture_filter = 1
 texture = ExtResource("1_6wip1")
-hframes = 6
+hframes = 9
 frame = 4
 script = ExtResource("1_v8qja")

@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://w5htydq0kd7p" path="res://player/reflection.tscn" id="2_0xm2m"]
 [ext_resource type="AudioStream" uid="uid://8fenihc7ryy3" path="res://67 FUNK.mp3" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://depegu68vn3jq" path="res://main.gd" id="4_main"]
+[ext_resource type="PackedScene" uid="uid://i7gau031x7um" path="res://enemy/baby_enemy.tscn" id="5_lquwl"]
 
 [node name="Main" type="Node2D" unique_id=1394772048]
 script = ExtResource("4_main")
@@ -18,3 +19,12 @@ position = Vector2(766, 315)
 stream = ExtResource("4_1bvp3")
 pitch_scale = 0.6
 autoplay = true
+
+[node name="BabyEnemy" parent="." unique_id=2014808105 instance=ExtResource("5_lquwl")]
+position = Vector2(611, 22)
+
+[node name="BabyEnemy2" parent="." unique_id=1730906586 instance=ExtResource("5_lquwl")]
+position = Vector2(611, -192)
+
+[node name="BabyEnemy3" parent="." unique_id=1956413075 instance=ExtResource("5_lquwl")]
+position = Vector2(611, -337)

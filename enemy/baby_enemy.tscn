@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://i7gau031x7um"]
+
+[ext_resource type="Script" uid="uid://ckyemae8gt62s" path="res://enemy/baby_enemy.gd" id="1_ivg5t"]
+[ext_resource type="Texture2D" uid="uid://dpy5r46771kni" path="res://assets/sprites/ships_sheet.png" id="2_oyw1k"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ivg5t"]
+radius = 12.0415945
+
+[node name="BabyEnemy" type="AnimatableBody2D" unique_id=2014808105]
+sync_to_physics = false
+script = ExtResource("1_ivg5t")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2020998168]
+texture_filter = 1
+rotation = 3.1415927
+texture = ExtResource("2_oyw1k")
+hframes = 3
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1426433118]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_ivg5t")
