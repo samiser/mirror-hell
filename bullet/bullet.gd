@@ -10,36 +10,41 @@ var ship_type: Ship.ShipType = Ship.ShipType.MAIN
 
 var _travelled_distance: float = 0.0
 
+var direction : Vector2
+var deflected : bool = false
+
 func _ready() -> void:
+	direction = -transform.y
 	top_level = true
 
 func _physics_process(delta: float) -> void:
 	var distance := speed * delta
-	var motion := -transform.y * speed * delta
-
-	var space_state := get_world_2d().direct_space_state
-	var query := PhysicsShapeQueryParameters2D.new()
-	query.shape_rid = BULLET_SHAPE.get_rid()
-	query.transform = global_transform
-	query.collision_mask = collision_mask
-	query.collide_with_areas = true
-	query.collide_with_bodies = true
-
-	var hits := space_state.intersect_shape(query, 1)
-	if hits.size() > 0:
-		_on_hit(hits[0].collider)
-		return
-
-	query.motion = motion
-	var result := space_state.cast_motion(query)
-	if result[0] < 1.0:
-		position += motion * result[1]
+	var motion := direction * speed * delta
+	
+	if not deflected:
+		var space_state := get_world_2d().direct_space_state
+		var query := PhysicsShapeQueryParameters2D.new()
+		query.shape_rid = BULLET_SHAPE.get_rid()
 		query.transform = global_transform
-		query.motion = Vector2.ZERO
-		hits = space_state.intersect_shape(query, 1)
+		query.collision_mask = collision_mask
+		query.collide_with_areas = true
+		query.collide_with_bodies = true
+
+		var hits := space_state.intersect_shape(query, 1)
 		if hits.size() > 0:
 			_on_hit(hits[0].collider)
-		return
+			return
+
+		query.motion = motion
+		var result := space_state.cast_motion(query)
+		if result[0] < 1.0:
+			position += motion * result[1]
+			query.transform = global_transform
+			query.motion = Vector2.ZERO
+			hits = space_state.intersect_shape(query, 1)
+			if hits.size() > 0:
+				_on_hit(hits[0].collider)
+			return
 
 	position += motion
 	_travelled_distance += distance
@@ -60,5 +65,10 @@ func _on_hit(collider: Object) -> void:
 			collider.take_damage(damage)
 		else:
 			collider.block_damage()
+			modulate.a = 0.5
+			flip_v = true
+			direction = Vector2(randf_range(-0.4, 0.4), 1)
+			deflected = true
+			return
 	
 	queue_free()
