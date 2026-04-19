@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://bbjqfnnyvskpy" path="res://assets/sprites/background_sheet.png" id="1_0dkrt"]
 [ext_resource type="Script" uid="uid://cxdoo0lrxlr1" path="res://ui/main_menu.gd" id="1_wk0pr"]
 [ext_resource type="Texture2D" uid="uid://dpy5r46771kni" path="res://assets/sprites/ships_sheet.png" id="2_wk0pr"]
+[ext_resource type="FontFile" uid="uid://cy11p80xcs3gc" path="res://assets/fonts/PlanetaryContact.ttf" id="3_rmr83"]
+[ext_resource type="AudioStream" uid="uid://b7g6kirydg1gk" path="res://assets/audio/8-bit_perilous_dungeon.mp3" id="5_8uxxo"]
 
 [node name="MainMenu" type="Node2D" unique_id=1917469057]
 script = ExtResource("1_wk0pr")
@@ -45,8 +47,9 @@ alignment = 1
 
 [node name="Title" type="RichTextLabel" parent="Control/VBoxContainer" unique_id=1772399359]
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_rmr83")
 theme_override_font_sizes/normal_font_size = 50
-text = "Title"
+text = "SHOOTWO EM UP"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -57,6 +60,7 @@ layout_mode = 2
 [node name="Play" type="Button" parent="Control/VBoxContainer/CenterContainer" unique_id=1083756859]
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_rmr83")
 theme_override_font_sizes/font_size = 50
 text = "Play"
 
@@ -95,3 +99,7 @@ texture = ExtResource("1_0dkrt")
 hframes = 3
 frame = 2
 region_rect = Rect2(0, 0, 648.40295, 1152)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=319128712]
+stream = ExtResource("5_8uxxo")
+autoplay = true
