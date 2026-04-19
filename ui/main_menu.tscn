@@ -7,30 +7,6 @@
 [node name="MainMenu" type="Node2D" unique_id=1917469057]
 script = ExtResource("1_wk0pr")
 
-[node name="Background" type="Sprite2D" parent="." unique_id=1808374706]
-z_index = -10
-position = Vector2(328, 580)
-texture = ExtResource("1_0dkrt")
-hframes = 3
-region_rect = Rect2(0, 0, 648.40295, 1152)
-
-[node name="Background2" type="Sprite2D" parent="." unique_id=1668136833]
-z_index = -9
-position = Vector2(328, 580)
-texture = ExtResource("1_0dkrt")
-hframes = 3
-frame = 1
-region_rect = Rect2(0, 0, 648.40295, 1152)
-
-[node name="Background3" type="Sprite2D" parent="." unique_id=957019034]
-modulate = Color(1, 1, 1, 0.46666667)
-z_index = 1
-position = Vector2(328, 580)
-texture = ExtResource("1_0dkrt")
-hframes = 3
-frame = 2
-region_rect = Rect2(0, 0, 648.40295, 1152)
-
 [node name="Ship1" type="Sprite2D" parent="." unique_id=1513462943]
 modulate = Color(1, 1, 1, 0.5882353)
 texture_filter = 1
@@ -83,3 +59,39 @@ custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Play"
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=754623888]
+repeat_size = Vector2(648, 1152)
+autoscroll = Vector2(15, 0)
+
+[node name="Background" type="Sprite2D" parent="Parallax2D" unique_id=933436712]
+z_index = -10
+position = Vector2(328, 580)
+texture = ExtResource("1_0dkrt")
+hframes = 3
+region_rect = Rect2(0, 0, 648.40295, 1152)
+
+[node name="Parallax2D2" type="Parallax2D" parent="." unique_id=1396824941]
+repeat_size = Vector2(648, 1152)
+autoscroll = Vector2(10, 0)
+
+[node name="Background" type="Sprite2D" parent="Parallax2D2" unique_id=1068753470]
+z_index = -9
+position = Vector2(328, 580)
+texture = ExtResource("1_0dkrt")
+hframes = 3
+frame = 1
+region_rect = Rect2(0, 0, 648.40295, 1152)
+
+[node name="Parallax2D3" type="Parallax2D" parent="." unique_id=1506518669]
+repeat_size = Vector2(648, 1152)
+autoscroll = Vector2(35, 0)
+
+[node name="Background" type="Sprite2D" parent="Parallax2D3" unique_id=1003639826]
+modulate = Color(1, 1, 1, 0.46666667)
+z_index = 1
+position = Vector2(328, 580)
+texture = ExtResource("1_0dkrt")
+hframes = 3
+frame = 2
+region_rect = Rect2(0, 0, 648.40295, 1152)
