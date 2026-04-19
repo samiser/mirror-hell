@@ -48,6 +48,14 @@ func heal(amount: float) -> void:
 	health = minf(health + amount, max_health)
 	_update_health_bar()
 
+func heal_to_full() -> void:
+	var tween := create_tween()
+	tween.tween_method(_set_health, health, max_health, 1.0)
+
+func _set_health(value: float) -> void:
+	health = value
+	_update_health_bar()
+
 func increase_max_health(amount: float) -> void:
 	max_health += amount
 	health += amount

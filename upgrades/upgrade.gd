@@ -18,6 +18,8 @@ func _ready() -> void:
 	type = Type.values().pick_random()
 	if type == Type.REPAIR:
 		sprite_2d.frame = 1
+	elif type == Type.SUPER:
+		sprite_2d.frame = 2
 	add_to_group("upgrade")
 
 func _physics_process(delta: float) -> void:

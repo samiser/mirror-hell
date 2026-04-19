@@ -47,6 +47,7 @@ func _process(delta: float) -> void:
 			if _alive_enemies <= 0:
 				_spawn_timer = 0.0
 				_state = State.PAUSED
+				_heal_players()
 
 		State.PAUSED:
 			if _spawn_timer >= wave_pause:
@@ -56,6 +57,10 @@ func _process(delta: float) -> void:
 
 func _on_enemy_died() -> void:
 	_alive_enemies -= 1
+
+func _heal_players() -> void:
+	for ship in get_tree().get_nodes_in_group("player_ship"):
+		ship.heal_to_full()
 
 func _get_spawns_for_wave() -> int:
 	return base_spawns + _current_wave / 2
@@ -112,8 +117,13 @@ func _spawn_enemy() -> void:
 	var reflected_x := 2.0 * center_x - x
 	var data := _get_enemy_data()
 
+	var blue_on_left := randf() > 0.5
+	var left_type := Enemy.Type.BLUE if blue_on_left else Enemy.Type.RED
+	var right_type := Enemy.Type.RED if blue_on_left else Enemy.Type.BLUE
+
 	var enemy1: Enemy = ENEMY.instantiate()
 	enemy1.apply_data(data)
+	enemy1.type = left_type
 	enemy1.position = Vector2(x, spawn_y)
 	enemy1.tree_exited.connect(_on_enemy_died)
 	add_child(enemy1)
@@ -121,7 +131,7 @@ func _spawn_enemy() -> void:
 
 	var enemy2: Enemy = ENEMY.instantiate()
 	enemy2.apply_data(data)
-	enemy2.type = Enemy.Type.RED
+	enemy2.type = right_type
 	enemy2.position = Vector2(reflected_x, spawn_y)
 	enemy2.tree_exited.connect(_on_enemy_died)
 	add_child(enemy2)
