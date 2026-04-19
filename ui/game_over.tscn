@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://3psrbjwal4eu"]
+
+[ext_resource type="Script" uid="uid://cdwp2wh1qrpp5" path="res://ui/game_over.gd" id="1_oo8kp"]
+
+[node name="GameOver" type="Control" unique_id=1702728671]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oo8kp")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1765432215]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CenterContainer" unique_id=404659529]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel" unique_id=1998523458]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/Panel/VBoxContainer" unique_id=916967576]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Game Over!"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="Retry" type="Button" parent="CenterContainer/Panel/VBoxContainer" unique_id=1545613962]
+layout_mode = 2
+text = "Retry"
+
+[node name="MainMenu" type="Button" parent="CenterContainer/Panel/VBoxContainer" unique_id=1465715311]
+layout_mode = 2
+text = "Main Menu"

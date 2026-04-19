@@ -20,6 +20,7 @@ var bullet_count: int = 3
 var spread_angle: float = deg_to_rad(20.0)
 
 var _fire_timer: float = 0.0
+var _can_fire: bool = true
 
 @onready var shield: AnimatableBody2D = $Shield
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -35,23 +36,30 @@ func apply_data(data: EnemyData) -> void:
 	spread_angle = deg_to_rad(data.spread_angle_degrees)
 
 func _ready() -> void:
+	add_to_group("enemy")
 	if type == Type.BLUE:
 		add_to_group("blue")
 		shield.add_to_group("red")
 	elif type == Type.RED:
 		add_to_group("red")
 		shield.add_to_group("blue")
-	
+
 	if not has_shield:
 		shield.queue_free()
 
 func _physics_process(delta: float) -> void:
 	position.y += speed * delta
 
+	if not _can_fire:
+		return
+
 	_fire_timer += delta
 	if _fire_timer >= fire_rate:
 		_fire_timer -= fire_rate
 		_shoot()
+
+func stop_firing() -> void:
+	_can_fire = false
 
 func _shoot() -> void:
 	var start_angle := -spread_angle / 2.0
@@ -64,6 +72,7 @@ func _shoot() -> void:
 		bullet.collision_mask = 2
 		bullet.is_enemy_bullet = true
 		bullet.speed = 375
+		bullet.damage = 10
 		bullet.frame = 0
 		get_tree().root.add_child(bullet)
 

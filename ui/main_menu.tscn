@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://bbusx335d6xr7"]
+
+[ext_resource type="Texture2D" uid="uid://bbjqfnnyvskpy" path="res://assets/sprites/background_sheet.png" id="1_0dkrt"]
+[ext_resource type="Script" uid="uid://cxdoo0lrxlr1" path="res://ui/main_menu.gd" id="1_wk0pr"]
+[ext_resource type="Texture2D" uid="uid://dpy5r46771kni" path="res://assets/sprites/ships_sheet.png" id="2_wk0pr"]
+
+[node name="MainMenu" type="Node2D" unique_id=1917469057]
+script = ExtResource("1_wk0pr")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1808374706]
+z_index = -10
+position = Vector2(328, 580)
+texture = ExtResource("1_0dkrt")
+hframes = 3
+region_rect = Rect2(0, 0, 648.40295, 1152)
+
+[node name="Background2" type="Sprite2D" parent="." unique_id=1668136833]
+z_index = -9
+position = Vector2(328, 580)
+texture = ExtResource("1_0dkrt")
+hframes = 3
+frame = 1
+region_rect = Rect2(0, 0, 648.40295, 1152)
+
+[node name="Background3" type="Sprite2D" parent="." unique_id=957019034]
+modulate = Color(1, 1, 1, 0.46666667)
+z_index = 1
+position = Vector2(328, 580)
+texture = ExtResource("1_0dkrt")
+hframes = 3
+frame = 2
+region_rect = Rect2(0, 0, 648.40295, 1152)
+
+[node name="Ship1" type="Sprite2D" parent="." unique_id=1513462943]
+modulate = Color(1, 1, 1, 0.5882353)
+texture_filter = 1
+position = Vector2(204.99998, 567)
+rotation = 0.40142572
+scale = Vector2(5, 5)
+texture = ExtResource("2_wk0pr")
+hframes = 6
+
+[node name="Ship2" type="Sprite2D" parent="." unique_id=1234860257]
+modulate = Color(1, 1, 1, 0.5882353)
+texture_filter = 1
+position = Vector2(457, 512)
+rotation = -0.37873644
+scale = Vector2(5, 5)
+texture = ExtResource("2_wk0pr")
+hframes = 6
+frame = 1
+
+[node name="Control" type="Control" parent="." unique_id=1855921904]
+custom_minimum_size = Vector2(648, 1152)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=905418752]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 528
+alignment = 1
+
+[node name="Title" type="RichTextLabel" parent="Control/VBoxContainer" unique_id=1772399359]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 50
+text = "Title"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Control/VBoxContainer" unique_id=1190799180]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="Control/VBoxContainer/CenterContainer" unique_id=1083756859]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Play"
