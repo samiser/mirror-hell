@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dpy5r46771kni" path="res://assets/sprites/ships_sheet.png" id="2_ppra6"]
 [ext_resource type="Script" uid="uid://b2h2uwwhvmh53" path="res://enemy/shield.gd" id="3_ppra6"]
 [ext_resource type="Texture2D" uid="uid://cp26yl17hjnax" path="res://assets/sprites/fx_sheet.png" id="4_p200p"]
+[ext_resource type="AudioStream" uid="uid://wynhh30rdu85" path="res://assets/audio/hit_3.wav" id="5_pmsee"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4gyqm"]
 radius = 28.0
@@ -38,3 +39,6 @@ hframes = 5
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shield" unique_id=1461691421]
 position = Vector2(-1, -1)
 shape = SubResource("CircleShape2D_4gyqm")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=174779059]
+stream = ExtResource("5_pmsee")

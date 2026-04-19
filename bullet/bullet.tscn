@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b18lvq0m5g3gs" path="res://assets/sprites/projectiles_sheet.png" id="1_6wip1"]
 [ext_resource type="Script" uid="uid://cmwouc8kn1rl0" path="res://bullet/bullet.gd" id="1_v8qja"]
+[ext_resource type="AudioStream" uid="uid://7qaog0a41ren" path="res://assets/audio/hit_4.wav" id="3_0qjqd"]
 
 [node name="Bullet" type="Sprite2D" unique_id=1138541297]
 texture_filter = 1
@@ -9,3 +10,6 @@ texture = ExtResource("1_6wip1")
 hframes = 9
 frame = 4
 script = ExtResource("1_v8qja")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=440521057]
+stream = ExtResource("3_0qjqd")
