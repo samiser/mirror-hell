@@ -20,10 +20,11 @@ func _spawn_enemy() -> void:
 	var x := randf_range(spawn_margin, center_x)
 	var reflected_x := 2.0 * center_x - x
 
-	var enemy1 = ENEMY.instantiate()
+	var enemy1: Enemy = ENEMY.instantiate()
 	enemy1.position = Vector2(x, spawn_y)
 	add_child(enemy1)
 
-	var enemy2 = ENEMY.instantiate()
+	var enemy2: Enemy = ENEMY.instantiate()
+	enemy2.type = Enemy.Type.RED
 	enemy2.position = Vector2(reflected_x, spawn_y)
 	add_child(enemy2)
