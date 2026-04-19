@@ -2,9 +2,8 @@ extends Node2D
 
 const ENEMY = preload("uid://ui8a1cy34oki")
 
-var spawn_interval: float = 1.0
-var spawn_x_min: float = 100.0
-var spawn_x_max: float = 1000.0
+var spawn_interval: float = 3.0
+var spawn_margin: float = 100.0
 var spawn_y: float = -100.0
 
 var _spawn_timer: float = 0.0
@@ -16,9 +15,15 @@ func _process(delta: float) -> void:
 		_spawn_enemy()
 
 func _spawn_enemy() -> void:
-	var enemy = ENEMY.instantiate()
+	var center_x := get_viewport_rect().size.x / 2.0
 
-	enemy.position.x = randf_range(spawn_x_min, spawn_x_max)
-	enemy.position.y = spawn_y
+	var x := randf_range(spawn_margin, center_x)
+	var reflected_x := 2.0 * center_x - x
 
-	add_child(enemy)
+	var enemy1 = ENEMY.instantiate()
+	enemy1.position = Vector2(x, spawn_y)
+	add_child(enemy1)
+
+	var enemy2 = ENEMY.instantiate()
+	enemy2.position = Vector2(reflected_x, spawn_y)
+	add_child(enemy2)
