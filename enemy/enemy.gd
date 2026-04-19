@@ -43,6 +43,7 @@ func _ready() -> void:
 	if type == Type.BLUE:
 		add_to_group("blue")
 		shield.add_to_group("red")
+		sprite_2d.frame = 4
 	elif type == Type.RED:
 		add_to_group("red")
 		shield.add_to_group("blue")
