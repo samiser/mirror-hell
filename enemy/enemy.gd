@@ -113,7 +113,9 @@ func take_damage(amount: float) -> void:
 		return
 	
 	health -= amount
-	sprite_2d.modulate.s = 1 - health / max_health * 1
+	var tween : Tween = get_tree().create_tween()
+	tween.tween_property(sprite_2d, "modulate", Color.WHITE * 2, 0.1)
+	tween.tween_property(sprite_2d, "modulate", Color.WHITE, 0.2)
 	
 	audio_stream_player_2d.stream = load("res://assets/audio/hit_1.wav")
 	audio_stream_player_2d.pitch_scale = randf_range(0.9, 1.1)
