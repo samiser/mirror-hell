@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://w5htydq0kd7p"]
 
 [ext_resource type="Script" uid="uid://3gucq5g4dwuw" path="res://reflection.gd" id="1_d6p6h"]
-[ext_resource type="Texture2D" uid="uid://c3v5ysu6bgrls" path="res://icon.svg" id="2_3p3qi"]
+[ext_resource type="PackedScene" uid="uid://bv16vxacqhwj3" path="res://ship.tscn" id="2_3p3qi"]
 
 [node name="Reflection" type="Node2D" unique_id=598610504]
 script = ExtResource("1_d6p6h")
 
-[node name="Icon" type="Sprite2D" parent="." unique_id=1095029386]
-texture = ExtResource("2_3p3qi")
+[node name="Ship" parent="." unique_id=251740234 instance=ExtResource("2_3p3qi")]
+ship_type = 1

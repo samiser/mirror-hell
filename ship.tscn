@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bv16vxacqhwj3"]
+
+[ext_resource type="Script" uid="uid://c35mqwx5tuqj7" path="res://ship.gd" id="1_v4325"]
+[ext_resource type="Script" uid="uid://3vfj1u4veuyg" path="res://gun.gd" id="2_4cq66"]
+[ext_resource type="Texture2D" uid="uid://dx4q6mfg3r2lu" path="res://Sprites/chungus_ship.png" id="3_v4325"]
+
+[node name="Ship" type="Node2D" unique_id=251740234]
+script = ExtResource("1_v4325")
+
+[node name="Gun" type="Node2D" parent="." unique_id=1807326015]
+script = ExtResource("2_4cq66")
+
+[node name="ChungusShip" type="Sprite2D" parent="." unique_id=1911509201]
+texture_filter = 1
+texture = ExtResource("3_v4325")
