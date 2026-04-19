@@ -21,7 +21,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="CenterContainer" unique_id=404659529]
-custom_minimum_size = Vector2(300, 300)
+custom_minimum_size = Vector2(274.205, 203.575)
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel" unique_id=1998523458]
@@ -31,6 +31,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 20
 alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/Panel/VBoxContainer" unique_id=916967576]

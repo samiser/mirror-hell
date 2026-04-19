@@ -60,6 +60,7 @@ func increase_max_health(amount: float) -> void:
 	max_health += amount
 	health += amount
 	health_bar.size.x += _health_bar_width_increment
+	health_bar.position.x -= _health_bar_width_increment / 2
 	_update_health_bar()
 
 func _update_health_bar() -> void:

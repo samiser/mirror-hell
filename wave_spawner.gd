@@ -7,6 +7,8 @@ const ENEMY_BASIC = preload("res://enemy/enemy_basic.tres")
 const ENEMY_FAST = preload("res://enemy/enemy_fast.tres")
 const ENEMY_TANK = preload("res://enemy/enemy_tank.tres")
 
+@onready var wave_text: RichTextLabel = $"../UI/WaveText"
+
 enum State { SPAWNING, WAITING, PAUSED }
 enum EnemyType { BASIC, FAST, BABY, TANK }
 
@@ -53,12 +55,21 @@ func _process(delta: float) -> void:
 				_spawn_timer = 0.0
 				_state = State.PAUSED
 				_heal_players()
+				_increment_wave()
 
 		State.PAUSED:
 			if _spawn_timer >= wave_pause:
 				_spawn_timer = 0.0
 				_current_wave += 1
 				_state = State.SPAWNING
+
+func _increment_wave() -> void:
+	var base_size := wave_text.get_theme_font_size("normal_font_size")
+	var tween := create_tween()
+	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	wave_text.text = "Wave: %d" % (_current_wave + 2)
+	tween.tween_property(wave_text, "theme_override_font_sizes/normal_font_size", base_size + 10, wave_pause / 3.0)
+	tween.tween_property(wave_text, "theme_override_font_sizes/normal_font_size", base_size, wave_pause / 3.0)
 
 func _on_enemy_died() -> void:
 	_alive_enemies -= 1
