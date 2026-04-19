@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3]
+
+[ext_resource type="Script" path="res://enemy/enemy_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+type = 0
+has_shield = true
+health = 300.0
+speed = 25.0
+fire_rate = 2.0
+bullet_count = 5
+spread_angle_degrees = 45.0

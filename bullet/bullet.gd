@@ -50,9 +50,15 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 
 var damage: float = 1
+var is_enemy_bullet: bool = false
 
 func _on_hit(collider: Object) -> void:
-	if collider.is_in_group("blue") and ship_type == Ship.ShipType.REFLECTION and collider.has_method("take_damage"):
+	if not collider.has_method("take_damage"):
+		return
+
+	if is_enemy_bullet:
 		collider.take_damage(damage)
-	elif collider.is_in_group("red") and ship_type == Ship.ShipType.MAIN and collider.has_method("take_damage"):
+	elif collider.is_in_group("blue") and ship_type == Ship.ShipType.REFLECTION:
+		collider.take_damage(damage)
+	elif collider.is_in_group("red") and ship_type == Ship.ShipType.MAIN:
 		collider.take_damage(damage)
