@@ -13,4 +13,4 @@ script = ExtResource("2_4cq66")
 [node name="ChungusShip" type="Sprite2D" parent="." unique_id=1911509201]
 texture_filter = 1
 texture = ExtResource("3_wp5hq")
-hframes = 3
+hframes = 4
