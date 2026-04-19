@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://w5htydq0kd7p"]
 
-[ext_resource type="Script" uid="uid://3gucq5g4dwuw" path="res://reflection.gd" id="1_d6p6h"]
-[ext_resource type="PackedScene" uid="uid://bv16vxacqhwj3" path="res://ship.tscn" id="2_3p3qi"]
+[ext_resource type="Script" uid="uid://3gucq5g4dwuw" path="res://player/reflection.gd" id="1_d6p6h"]
+[ext_resource type="PackedScene" uid="uid://bv16vxacqhwj3" path="res://player/ship.tscn" id="2_3p3qi"]
 
 [node name="Reflection" type="Node2D" unique_id=598610504]
 script = ExtResource("1_d6p6h")

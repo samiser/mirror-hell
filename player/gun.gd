@@ -14,6 +14,7 @@ func _process(delta: float) -> void:
 			var bullet: Bullet = BULLET.instantiate()
 			if ship_type == Ship.ShipType.REFLECTION:
 				bullet.frame = 3
+				bullet.ship_type = Ship.ShipType.REFLECTION
 			bullet.global_position = global_position
 			bullet.global_rotation = global_rotation + randf_range(-spread_angle / 2, spread_angle / 2)
 			add_child(bullet)

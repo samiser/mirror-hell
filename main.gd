@@ -1,6 +1,6 @@
 extends Node2D
 
-const ENEMY = preload("res://enemy.tscn")
+const ENEMY = preload("uid://ui8a1cy34oki")
 
 var spawn_interval: float = 1.0
 var spawn_x_min: float = 100.0

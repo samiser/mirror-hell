@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://ui8a1cy34oki"]
 
-[ext_resource type="Script" uid="uid://k022omxi44uq" path="res://enemy.gd" id="1_4gyqm"]
-[ext_resource type="Texture2D" uid="uid://cgi13cengnxa7" path="res://Sprites/spritesheet.png" id="2_4gyqm"]
+[ext_resource type="Script" uid="uid://k022omxi44uq" path="res://enemy/enemy.gd" id="1_4gyqm"]
+[ext_resource type="Texture2D" uid="uid://cgi13cengnxa7" path="res://assets/sprites/spritesheet.png" id="2_4gyqm"]
+[ext_resource type="Script" uid="uid://b2h2uwwhvmh53" path="res://enemy/shield.gd" id="3_ppra6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4gyqm"]
 radius = 28.0
 
 [node name="Enemy" type="AnimatableBody2D" unique_id=2014808105]
+sync_to_physics = false
 script = ExtResource("1_4gyqm")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2020998168]
@@ -20,8 +22,10 @@ frame = 1
 rotation = -3.1415925
 polygon = PackedVector2Array(-15.000001, -10.999999, -20, -5.999998, -19.999998, 18.000002, -14.999998, 18.000002, -8.999999, 12.000001, -4.999999, 12, -3.9999986, 15, 4.0000014, 15, 5.000001, 12, 9.000001, 11.999999, 15.000002, 17.999998, 20.000002, 17.999998, 20, -6.000002, 14.999999, -11.000001, 12.999999, -12.000001, 7.999999, -12.000001, 6.9999995, -6.0000005, 3.9999998, -3.0000002, 1.9999994, -7, -2.0000007, -7, -4.0000005, -2.9999998, -7.0000005, -5.9999995, -8.000001, -11.999999, -13.000001, -11.999999)
 
-[node name="Shield" type="Node2D" parent="." unique_id=732328701]
+[node name="Shield" type="AnimatableBody2D" parent="." unique_id=238881602]
 position = Vector2(0, -3)
+sync_to_physics = false
+script = ExtResource("3_ppra6")
 
 [node name="Sprite2D" type="Sprite2D" parent="Shield" unique_id=1525752247]
 texture_filter = 1

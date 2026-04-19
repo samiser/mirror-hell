@@ -1,11 +1,12 @@
 class_name Bullet
 extends Sprite2D
 
-const BULLET_SHAPE: Shape2D = preload("res://bullet_shape.tres")
+const BULLET_SHAPE = preload("res://bullet/bullet_shape.tres")
 
 var max_range: float = 1200.0
 var speed: float = 750
 var collision_mask: int = 1
+var ship_type: Ship.ShipType = Ship.ShipType.MAIN
 
 var _travelled_distance: float = 0.0
 
@@ -51,5 +52,7 @@ func _physics_process(delta: float) -> void:
 var damage: float = 1
 
 func _on_hit(collider: Object) -> void:
-	if collider.has_method("take_damage"):
+	if collider.is_in_group("shield") and ship_type == Ship.ShipType.REFLECTION and collider.has_method("take_damage"):
+		collider.take_damage(damage)
+	elif collider.is_in_group("enemy") and ship_type == Ship.ShipType.MAIN and collider.has_method("take_damage"):
 		collider.take_damage(damage)
