@@ -16,8 +16,8 @@ script = ExtResource("1_4gyqm")
 texture_filter = 1
 rotation = 3.1415927
 texture = ExtResource("2_ppra6")
-hframes = 3
-frame = 1
+hframes = 4
+frame = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=891837017]
 rotation = -3.1415925
