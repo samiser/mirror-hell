@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://smgfahpj05cu"]
 
-[ext_resource type="Texture2D" uid="uid://cgi13cengnxa7" path="res://assets/sprites/spritesheet.png" id="1_t4vbm"]
+[ext_resource type="Texture2D" uid="uid://b18lvq0m5g3gs" path="res://assets/sprites/projectiles_sheet.png" id="1_6wip1"]
 [ext_resource type="Script" uid="uid://cmwouc8kn1rl0" path="res://bullet/bullet.gd" id="1_v8qja"]
 
 [node name="Bullet" type="Sprite2D" unique_id=1138541297]
 texture_filter = 1
-texture = ExtResource("1_t4vbm")
-hframes = 17
-frame = 5
+texture = ExtResource("1_6wip1")
+hframes = 6
+frame = 4
 script = ExtResource("1_v8qja")

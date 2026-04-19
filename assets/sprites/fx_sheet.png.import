@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dx4q6mfg3r2lu"
-path="res://.godot/imported/chungus_ship.png-5832d2145d11b8b4b48b26cf322440a5.ctex"
+uid="uid://cp26yl17hjnax"
+path="res://.godot/imported/fx_sheet.png-6d9ef712cda621b156056eba1f2fc3c1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/chungus_ship.png"
-dest_files=["res://.godot/imported/chungus_ship.png-5832d2145d11b8b4b48b26cf322440a5.ctex"]
+source_file="res://assets/sprites/fx_sheet.png"
+dest_files=["res://.godot/imported/fx_sheet.png-6d9ef712cda621b156056eba1f2fc3c1.ctex"]
 
 [params]
 
-compress/mode=3
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
