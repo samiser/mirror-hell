@@ -20,6 +20,8 @@ func _ready() -> void:
 		sprite_2d.frame = 1
 	elif type == Type.SUPER:
 		sprite_2d.frame = 2
+	elif type == Type.MAX_HEALTH:
+		sprite_2d.frame = 3
 	add_to_group("upgrade")
 
 func _physics_process(delta: float) -> void:

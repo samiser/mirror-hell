@@ -19,7 +19,6 @@ hframes = 6
 frame = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1426433118]
-position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_ivg5t")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=874692942]

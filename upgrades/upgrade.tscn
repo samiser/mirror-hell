@@ -14,7 +14,7 @@ script = ExtResource("1_rgapa")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=834899534]
 texture_filter = 1
 texture = ExtResource("2_rgapa")
-hframes = 3
+hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2095721111]
 shape = SubResource("CircleShape2D_rgapa")

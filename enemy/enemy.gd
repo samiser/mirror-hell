@@ -64,6 +64,10 @@ func _physics_process(delta: float) -> void:
 
 	position.y += speed * delta
 
+	if position.y > get_viewport_rect().size.y + 50:
+		_trigger_game_over()
+		return
+
 	if not _active:
 		if position.y > ENTER_THRESHOLD:
 			_activate()
@@ -147,9 +151,20 @@ func _die() -> void:
 	dead = true
 	sprite_2d.visible = false
 	$CollisionPolygon2D.disabled = true
-	
+
 	audio_stream_player_2d.stream = load("res://assets/audio/boom_2.wav")
 	audio_stream_player_2d.play()
 	await audio_stream_player_2d.finished
-	
+
 	queue_free()
+
+func _trigger_game_over() -> void:
+	for ship in get_tree().get_nodes_in_group("player_ship"):
+		ship.visible = false
+		ship.set_physics_process(false)
+
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		enemy.stop_firing()
+
+	var game_over := get_node("/root/Main/UI/GameOver")
+	game_over.visible = true
