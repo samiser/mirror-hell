@@ -16,3 +16,6 @@ func take_damage(amount: float) -> void:
 	
 	if health <= 0:
 		queue_free()
+
+func block_damage() -> void:
+	pass
