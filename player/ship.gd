@@ -24,6 +24,10 @@ func _ready() -> void:
 
 func take_damage(amount: float) -> void:
 	health -= amount
+	
+	$AudioStreamPlayer2D.stream = load("res://assets/audio/hit_5.wav")
+	$AudioStreamPlayer2D.play()
+	
 	if health <= 0:
 		health = 0
 		_trigger_game_over()
@@ -61,3 +65,5 @@ func _check_upgrade_pickup() -> void:
 	for upgrade in get_tree().get_nodes_in_group("upgrade"):
 		if global_position.distance_to(upgrade.global_position) < PICKUP_RADIUS:
 			upgrade.apply(self)
+			$AudioStreamPlayer2D.stream = load("res://assets/audio/powerup.wav")
+			$AudioStreamPlayer2D.play()
