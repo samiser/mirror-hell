@@ -4,7 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://w5htydq0kd7p" path="res://player/reflection.tscn" id="2_0xm2m"]
 [ext_resource type="AudioStream" uid="uid://8fenihc7ryy3" path="res://67 FUNK.mp3" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://depegu68vn3jq" path="res://main.gd" id="4_main"]
-[ext_resource type="PackedScene" path="res://enemy/baby_enemy.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://i7gau031x7um" path="res://enemy/baby_enemy.tscn" id="5_lquwl"]
+[ext_resource type="Texture2D" uid="uid://bbjqfnnyvskpy" path="res://assets/sprites/background_sheet.png" id="6_7mycd"]
 
 [node name="Main" type="Node2D" unique_id=1394772048]
 script = ExtResource("4_main")
@@ -28,3 +29,39 @@ position = Vector2(337, -268)
 
 [node name="BabyEnemy3" parent="." unique_id=1956413075 instance=ExtResource("5_lquwl")]
 position = Vector2(337, -413)
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=829757101]
+repeat_size = Vector2(648, 1152)
+autoscroll = Vector2(0, 15)
+
+[node name="Background" type="Sprite2D" parent="Parallax2D" unique_id=1210737493]
+z_index = -10
+position = Vector2(328, 580)
+texture = ExtResource("6_7mycd")
+hframes = 3
+region_rect = Rect2(0, 0, 648.40295, 1152)
+
+[node name="Parallax2D2" type="Parallax2D" parent="." unique_id=388615320]
+repeat_size = Vector2(648, 1152)
+autoscroll = Vector2(0, 10)
+
+[node name="Background" type="Sprite2D" parent="Parallax2D2" unique_id=2016855017]
+z_index = -9
+position = Vector2(328, 580)
+texture = ExtResource("6_7mycd")
+hframes = 3
+frame = 1
+region_rect = Rect2(0, 0, 648.40295, 1152)
+
+[node name="Parallax2D3" type="Parallax2D" parent="." unique_id=1745640397]
+repeat_size = Vector2(648, 1152)
+autoscroll = Vector2(0, 35)
+
+[node name="Background" type="Sprite2D" parent="Parallax2D3" unique_id=1298390105]
+modulate = Color(1, 1, 1, 0.46666667)
+z_index = 1
+position = Vector2(328, 580)
+texture = ExtResource("6_7mycd")
+hframes = 3
+frame = 2
+region_rect = Rect2(0, 0, 648.40295, 1152)
