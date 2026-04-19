@@ -42,15 +42,21 @@ func _shoot_normal(delta: float) -> void:
 		bullet.damage = normal_damage
 		bullet.global_rotation = global_rotation
 		add_child(bullet)
+		$AudioStreamPlayer2D2.pitch_scale = randf_range(0.9, 1.1)
+		$AudioStreamPlayer2D2.play()
+
 
 func _shoot_powered(delta: float) -> void:
+
 	var bullet_count := roundi(powerup_fire_rate * delta)
 	for i in bullet_count:
 		var bullet := _create_bullet()
 		bullet.damage = normal_damage
 		bullet.global_rotation = global_rotation + randf_range(-powerup_spread / 2, powerup_spread / 2)
 		add_child(bullet)
-
+		if randi() % 4 == 0:
+			$AudioStreamPlayer2D2.pitch_scale = randf_range(0.8, 1.2)
+			$AudioStreamPlayer2D2.play()
 func _create_bullet() -> Bullet:
 	var bullet: Bullet = BULLET.instantiate()
 	bullet.global_position = global_position
