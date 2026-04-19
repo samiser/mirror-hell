@@ -66,8 +66,11 @@ func _on_hit(collider: Object) -> void:
 		else:
 			collider.block_damage()
 			modulate.a = 0.5
+			max_range *= 2.0
 			flip_v = true
-			direction = Vector2(randf_range(-0.4, 0.4), 1)
+			var xrot : float = randf_range(-0.4, 0.4)
+			direction = Vector2(-xrot, 1)
+			rotation += xrot
 			deflected = true
 			return
 	
