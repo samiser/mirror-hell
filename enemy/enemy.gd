@@ -13,6 +13,8 @@ var has_shield: bool = false
 
 var health: float = 100.0
 var max_health: float = 100.0
+var dead : bool = false
+
 var speed: float = 50.0
 
 var fire_rate: float = 1
@@ -21,6 +23,7 @@ var spread_angle: float = deg_to_rad(20.0)
 
 var _fire_timer: float = 0.0
 
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var shield: AnimatableBody2D = $Shield
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
@@ -46,6 +49,9 @@ func _ready() -> void:
 		shield.queue_free()
 
 func _physics_process(delta: float) -> void:
+	if dead:
+		return
+	
 	position.y += speed * delta
 
 	_fire_timer += delta
@@ -54,6 +60,9 @@ func _physics_process(delta: float) -> void:
 		_shoot()
 
 func _shoot() -> void:
+	if dead:
+		return
+		
 	var start_angle := -spread_angle / 2.0
 	var angle_step := spread_angle / (bullet_count - 1) if bullet_count > 1 else 0.0
 
@@ -68,14 +77,51 @@ func _shoot() -> void:
 		get_tree().root.add_child(bullet)
 
 func take_damage(amount: float) -> void:
+	if dead:
+		return
+	
 	health -= amount
 	sprite_2d.modulate.s = 1 - health / max_health * 1
+	
+	audio_stream_player_2d.stream = load("res://assets/audio/hit_1.wav")
+	audio_stream_player_2d.pitch_scale = randf_range(0.9, 1.1)
+	audio_stream_player_2d.play()
+	
 	if health <= 0:
 		_try_drop_upgrade()
-		queue_free()
+		_die()
+	else:
+		var shake_count : int = 0
+		var shake_magnitude : float = 2.0
+		while shake_count < 6:
+			sprite_2d.position += Vector2(randf_range(-shake_magnitude, shake_magnitude), randf_range(-shake_magnitude, shake_magnitude))
+			var timer : SceneTreeTimer = get_tree().create_timer(0.1)
+			await timer.timeout
+			shake_count += 1
+		sprite_2d.position = Vector2.ZERO
+
+func block_damage() -> void:
+	audio_stream_player_2d.stream = load("res://assets/audio/hit_4.wav")
+	audio_stream_player_2d.play()
+	
+	var tween : Tween = get_tree().create_tween()
+	var flash_colour : Color = Color.BLUE if type == Type.BLUE else Color.RED
+	tween.tween_property(sprite_2d, "modulate", flash_colour, 0.1)
+	tween.tween_property(sprite_2d, "modulate", Color.WHITE, 0.4)
 
 func _try_drop_upgrade() -> void:
 	if randf() < drop_chance:
 		var upgrade = UPGRADE.instantiate()
 		upgrade.global_position = global_position
 		get_tree().root.add_child(upgrade)
+		
+func _die() -> void:
+	dead = true
+	sprite_2d.visible = false
+	$CollisionPolygon2D.disabled = true
+	
+	audio_stream_player_2d.stream = load("res://assets/audio/boom_2.wav")
+	audio_stream_player_2d.play()
+	await audio_stream_player_2d.finished
+	
+	queue_free()
