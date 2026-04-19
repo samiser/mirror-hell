@@ -35,3 +35,5 @@ theme_override_styles/background = SubResource("StyleBoxFlat_wp5hq")
 theme_override_styles/fill = SubResource("StyleBoxFlat_iibov")
 value = 50.0
 show_percentage = false
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=376567228]

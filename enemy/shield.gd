@@ -18,4 +18,9 @@ func take_damage(amount: float) -> void:
 		queue_free()
 
 func block_damage() -> void:
-	pass
+	audio_stream_player_2d.stream = load("res://assets/audio/hit_4.wav")
+	audio_stream_player_2d.play()
+	
+	var tween : Tween = get_tree().create_tween()
+	tween.tween_property(sprite_2d, "modulate", Color.CYAN, 0.1)
+	tween.tween_property(sprite_2d, "modulate", Color.WHITE, 0.4)
