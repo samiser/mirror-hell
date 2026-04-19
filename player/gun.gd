@@ -11,9 +11,18 @@ var normal_damage: float = 20.0
 
 var powerup_fire_rate: float = 100.0
 var powerup_spread: float = deg_to_rad(30.0)
-var powerup_damage: float = 1.0
 
 var _fire_timer: float = 0.0
+
+func _ready() -> void:
+	add_to_group("gun")
+
+func activate_super(duration: float) -> void:
+	powered_up = true
+	get_tree().create_timer(duration).timeout.connect(_deactivate_super)
+
+func _deactivate_super() -> void:
+	powered_up = false
 
 func _process(delta: float) -> void:
 	if not Input.is_action_pressed("shoot"):
@@ -38,7 +47,7 @@ func _shoot_powered(delta: float) -> void:
 	var bullet_count := roundi(powerup_fire_rate * delta)
 	for i in bullet_count:
 		var bullet := _create_bullet()
-		bullet.damage = powerup_damage
+		bullet.damage = normal_damage
 		bullet.global_rotation = global_rotation + randf_range(-powerup_spread / 2, powerup_spread / 2)
 		add_child(bullet)
 

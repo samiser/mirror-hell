@@ -2,8 +2,11 @@ class_name Enemy
 extends AnimatableBody2D
 
 const BULLET = preload("res://bullet/bullet.tscn")
+const UPGRADE = preload("res://upgrades/upgrade.tscn")
 
 enum Type {BLUE, RED}
+
+var drop_chance: float = 0.2
 
 var type: Type = Type.BLUE
 var has_shield: bool = false
@@ -68,4 +71,11 @@ func take_damage(amount: float) -> void:
 	health -= amount
 	sprite_2d.modulate.s = 1 - health / max_health * 1
 	if health <= 0:
+		_try_drop_upgrade()
 		queue_free()
+
+func _try_drop_upgrade() -> void:
+	if randf() < drop_chance:
+		var upgrade = UPGRADE.instantiate()
+		upgrade.global_position = global_position
+		get_tree().root.add_child(upgrade)

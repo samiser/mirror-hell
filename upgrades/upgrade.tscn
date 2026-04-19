@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://8k1faqvrt8f3"]
+
+[ext_resource type="Script" uid="uid://cbwm3qtigbabt" path="res://upgrades/upgrade.gd" id="1_rgapa"]
+[ext_resource type="Texture2D" uid="uid://cg080ixiwfa7a" path="res://assets/sprites/items_sheet.png" id="2_rgapa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rgapa"]
+radius = 10.049875
+
+[node name="Upgrade" type="AnimatableBody2D" unique_id=512988770]
+script = ExtResource("1_rgapa")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=834899534]
+texture_filter = 1
+texture = ExtResource("2_rgapa")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2095721111]
+shape = SubResource("CircleShape2D_rgapa")

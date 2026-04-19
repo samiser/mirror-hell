@@ -4,9 +4,15 @@
 [ext_resource type="PackedScene" uid="uid://w5htydq0kd7p" path="res://player/reflection.tscn" id="2_0xm2m"]
 [ext_resource type="AudioStream" uid="uid://8fenihc7ryy3" path="res://67 FUNK.mp3" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://depegu68vn3jq" path="res://main.gd" id="4_main"]
-[ext_resource type="PackedScene" path="res://enemy/baby_enemy.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://i7gau031x7um" path="res://enemy/baby_enemy.tscn" id="5_lquwl"]
 [ext_resource type="Texture2D" uid="uid://bbjqfnnyvskpy" path="res://assets/sprites/background_sheet.png" id="6_7mycd"]
 [ext_resource type="Script" uid="uid://dhgyhujrl018l" path="res://wave_spawner.gd" id="7_272bh"]
+
+[sub_resource type="Environment" id="Environment_5vw27"]
+glow_enabled = true
+glow_intensity = 3.29
+glow_bloom = 0.39
+glow_hdr_threshold = 0.7
 
 [node name="Main" type="Node2D" unique_id=1394772048]
 script = ExtResource("4_main")
@@ -69,3 +75,13 @@ region_rect = Rect2(0, 0, 648.40295, 1152)
 
 [node name="WaveSpawner" type="Node" parent="." unique_id=1891211097]
 script = ExtResource("7_272bh")
+
+[node name="UI" type="Control" parent="." unique_id=1123100213]
+custom_minimum_size = Vector2(648, 1152)
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=60185360]
+environment = SubResource("Environment_5vw27")
