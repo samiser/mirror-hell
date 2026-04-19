@@ -11,7 +11,7 @@ var spawn_margin: float = 100.0
 var spawn_y: float = -100.0
 
 var spawns_per_wave: int = 5
-var wave_pause: float = 3.0
+var wave_pause: float = 10.0
 
 var _spawn_timer: float = 0.0
 var _spawns_this_wave: int = 0
