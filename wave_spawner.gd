@@ -8,12 +8,15 @@ const ENEMY_TANK = preload("res://enemy/enemy_tank.tres")
 
 enum State { SPAWNING, WAITING, PAUSED }
 
-var spawn_interval: float = 2.0
 var spawn_margin: float = 100.0
 var spawn_y: float = -100.0
+var wave_pause: float = 1.0
 
-var spawns_per_wave: int = 5
-var wave_pause: float = 3.0
+var base_spawns: int = 2
+var base_spawn_interval: float = 2.5
+
+var fast_unlock_wave: int = 3
+var tank_unlock_wave: int = 6
 
 var _spawn_timer: float = 0.0
 var _spawns_this_wave: int = 0
@@ -21,25 +24,23 @@ var _current_wave: int = 0
 var _state: State = State.SPAWNING
 var _alive_enemies: int = 0
 
-var _wave_configs: Array[Array] = [
-	[ENEMY_BASIC],
-	[ENEMY_BASIC, ENEMY_FAST],
-	[ENEMY_FAST, ENEMY_TANK],
-	[ENEMY_BASIC, ENEMY_FAST, ENEMY_TANK],
-]
+var _fast_spawned_this_wave: int = 0
+var _tank_spawned_this_wave: int = 0
 
 func _process(delta: float) -> void:
 	_spawn_timer += delta
 
 	match _state:
 		State.SPAWNING:
-			if _spawn_timer >= spawn_interval:
-				_spawn_timer -= spawn_interval
+			if _spawn_timer >= _get_spawn_interval():
+				_spawn_timer -= _get_spawn_interval()
 				_spawn_enemy()
 				_spawns_this_wave += 1
 
-				if _spawns_this_wave >= spawns_per_wave:
+				if _spawns_this_wave >= _get_spawns_for_wave():
 					_spawns_this_wave = 0
+					_fast_spawned_this_wave = 0
+					_tank_spawned_this_wave = 0
 					_state = State.WAITING
 
 		State.WAITING:
@@ -56,10 +57,54 @@ func _process(delta: float) -> void:
 func _on_enemy_died() -> void:
 	_alive_enemies -= 1
 
+func _get_spawns_for_wave() -> int:
+	return base_spawns + _current_wave / 2
+
+func _get_spawn_interval() -> float:
+	return maxf(base_spawn_interval - _current_wave * 0.1, 1.0)
+
+func _get_max_fast() -> int:
+	if _current_wave < fast_unlock_wave:
+		return 0
+	return 1 + (_current_wave - fast_unlock_wave) / 2
+
+func _get_max_tank() -> int:
+	if _current_wave < tank_unlock_wave:
+		return 0
+	return 1 + (_current_wave - tank_unlock_wave) / 3
+
 func _get_enemy_data() -> EnemyData:
-	var wave_index := mini(_current_wave, _wave_configs.size() - 1)
-	var pool: Array = _wave_configs[wave_index]
-	return pool.pick_random()
+	var available: Array[EnemyData] = [ENEMY_BASIC]
+	var weights: Array[float] = [1.0]
+
+	if _current_wave >= fast_unlock_wave and _fast_spawned_this_wave < _get_max_fast():
+		available.append(ENEMY_FAST)
+		weights.append(0.3 + (_current_wave - fast_unlock_wave) * 0.1)
+
+	if _current_wave >= tank_unlock_wave and _tank_spawned_this_wave < _get_max_tank():
+		available.append(ENEMY_TANK)
+		weights.append(0.2 + (_current_wave - tank_unlock_wave) * 0.05)
+
+	var picked := _weighted_pick(available, weights)
+
+	if picked == ENEMY_FAST:
+		_fast_spawned_this_wave += 1
+	elif picked == ENEMY_TANK:
+		_tank_spawned_this_wave += 1
+
+	return picked
+
+func _weighted_pick(items: Array[EnemyData], weights: Array[float]) -> EnemyData:
+	var total := 0.0
+	for w in weights:
+		total += w
+	var roll := randf() * total
+	var cumulative := 0.0
+	for i in items.size():
+		cumulative += weights[i]
+		if roll < cumulative:
+			return items[i]
+	return items[0]
 
 func _spawn_enemy() -> void:
 	var center_x := get_viewport().get_visible_rect().size.x / 2.0

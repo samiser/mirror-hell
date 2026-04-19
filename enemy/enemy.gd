@@ -23,6 +23,10 @@ var spread_angle: float = deg_to_rad(20.0)
 
 var _fire_timer: float = 0.0
 var _can_fire: bool = true
+var _active: bool = false
+
+const ENTER_THRESHOLD: float = 50.0
+const FADE_IN_DURATION: float = 0.3
 
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var shield: AnimatableBody2D = $Shield
@@ -40,6 +44,7 @@ func apply_data(data: EnemyData) -> void:
 
 func _ready() -> void:
 	add_to_group("enemy")
+	modulate.a = 0.0
 	if type == Type.BLUE:
 		add_to_group("blue")
 		shield.add_to_group("red")
@@ -53,8 +58,13 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if dead:
 		return
-	
+
 	position.y += speed * delta
+
+	if not _active:
+		if position.y > ENTER_THRESHOLD:
+			_activate()
+		return
 
 	if not _can_fire:
 		return
@@ -63,6 +73,11 @@ func _physics_process(delta: float) -> void:
 	if _fire_timer >= fire_rate:
 		_fire_timer -= fire_rate
 		_shoot()
+
+func _activate() -> void:
+	_active = true
+	var tween := create_tween()
+	tween.tween_property(self, "modulate:a", 1.0, FADE_IN_DURATION)
 
 func stop_firing() -> void:
 	_can_fire = false
@@ -86,7 +101,7 @@ func _shoot() -> void:
 		get_tree().root.add_child(bullet)
 
 func take_damage(amount: float) -> void:
-	if dead:
+	if dead or not _active:
 		return
 	
 	health -= amount
